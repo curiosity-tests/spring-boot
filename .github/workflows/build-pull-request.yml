@@ -47,7 +47,7 @@ env:
 jobs:
   build:
     name: Build Pull Request
-    if: ${{ github.repository == 'curiosity-tests/spring-boot' }}
+    if: ${{ github.repository == 'spring-projects/spring-boot' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check Out Code
