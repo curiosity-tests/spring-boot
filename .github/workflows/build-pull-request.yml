@@ -47,7 +47,12 @@ env:
 jobs:
   build:
     name: Build Pull Request
-    if: ${{ github.repository == 'spring-projects/spring-boot' }}
+    # racecar: the upstream guard pins this job to the canonical repo, so on a
+    # fork it skips and the run reports success having executed nothing. Our
+    # fork is added as an ADDITIONAL allowed repo -- the upstream clause is
+    # left intact, and nothing here publishes, deploys, pushes or uses secrets.
+    # (./.github/actions/build defaults publish=false, so this runs ./gradlew build.)
+    if: ${{ github.repository == 'spring-projects/spring-boot' || github.repository == 'curiosity-tests/spring-boot' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check Out Code
